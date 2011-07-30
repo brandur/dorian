@@ -1,4 +1,5 @@
 .bundle
+config/app.rb
 config/config.yml
 content
 current_article
