@@ -1,8 +1,7 @@
 class Tweet < ActiveRecord::Base
+  default_scope :order => 'published_at DESC'
   validates_presence_of :content, :permalink, :published_at
   validates_uniqueness_of :permalink
-
-  default_scope :order => 'published_at DESC'
 
   def content_html
     html = content

@@ -1,0 +1,49 @@
+.chart#book_chart
+- content_for(:javascript) do
+  javascript:
+    var chart;
+    $(document).ready(function() {
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'book_chart',
+          defaultSeriesType: 'bar'
+        },
+        title: {
+          text: 'Number of Books Read by Year'
+        },
+        xAxis: {
+          categories: [ #{@book_stats.map{ |s| s['year'] }.map{ |s| Time.new(s[0..4]) }.map{ |t| t.strftime("%Y") }.map{ |d| "'#{d}'" }.join(', ')} ],
+          title: {
+            text: null
+          }
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: null
+          }
+        },
+        tooltip: {
+          formatter: function() {
+            return this.y + (this.y != 1 ? ' books read' : ' book read') + ' in ' + this.x;
+          }
+        },
+        plotOptions: {
+          bar: {
+            dataLabels: {
+              enabled: true
+            }
+          }
+        },
+        legend: {
+          enabled: false
+        },
+        credits: {
+          enabled: false
+        },
+        series: [{
+          name: 'Books read',
+          data: [ #{@book_stats.map{ |s| s['count_all'] }.join(', ')} ]
+        }]
+      });
+    });

@@ -8,7 +8,7 @@ class Blog < ModuleBase
     num_updates = 0
     rss_for(config.atom) do |item|
       tweet = Article.new :title => item.title.content, 
-        :permalink => item.link.href, 
+        :permalink    => item.link.href, 
         :published_at => Time.parse(item.published.to_s)
       if tweet.valid?
         tweet.save

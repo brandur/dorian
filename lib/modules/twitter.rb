@@ -6,7 +6,7 @@ class Twitter < ModuleBase
 
   def update
     num_updates = 0
-    rss_for(config.rss) do |item|
+    rss_for("http://twitter.com/statuses/user_timeline/#{config.user}.rss") do |item|
       tweet = Tweet.new :content => item.title.gsub(/^[^:]+: /, ''), 
         :permalink => item.link, 
         :published_at => Time.parse(item.date.to_s)

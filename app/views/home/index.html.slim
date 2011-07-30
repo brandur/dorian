@@ -1,0 +1,95 @@
+- content_for(:title) do
+  | #{App.full_name} &mdash; #{App.display_name}
+- content_for(:fonts) do
+  link href='http://fonts.googleapis.com/css?family=Raleway:100|&amp;subset=latin' rel='stylesheet' type='text/css' 
+- content_for(:stylesheets) do
+  = stylesheet_link_tag 'index'
+
+#header
+  h1= App.display_name
+  /p#special I'm in Austin, TX for #{link_to '#sxsw', 'http://sxsw.com'}, #{link_to 'follow me!', 'http://twitter.com/fyrerise'}
+  /p#special I'm currently in Las Vegas for #{link_to '#mix11', 'http://live.visitmix.com'}, #{link_to 'follow me!', 'http://twitter.com/fyrerise'}
+
+#boxes
+  .box#about
+    h2 About
+    p
+      | I'm a .NET and Rails designer, developer, and architect working out of Calgary. I've done extensive development work, and I'll work on almost any technology stack. Drop me a line at 
+      a(href='mailto: brandur@mutelight.org') brandur@mutelight.org
+      | .
+    p I'm interested in energy and how it relates to our society, muay thai, breakdancing, symphonic metal, surfing, and the guitar.
+    p  
+      a(href='http://twitter.com/fyrerise' title='Follow Brandur on Twitter') You should follow me on Twitter.
+
+  .box#articles
+    h2 Articles
+    p I <a href="http://mutelight.org">blog about technology</a> and other interesting things. Here are the latest articles that I've written:
+    ul
+      - @articles.each do |a|
+        li
+          = link_to a.title, a.permalink
+          = ' '
+          span.meta= a.published_at.getlocal.strftime('%b %e, %Y')
+
+  .box#books
+    h2 Books
+    p
+      | These days I try to read mostly non-fiction. #{link_to 'My entire reading history', 'http://www.goodreads.com/review/list/5896508?shelf=read'} is available online. 
+      - if @book
+        | The most recent book that I read was <em>#{@book.title}</em> by #{@book.author}.
+    = render :partial => 'book_chart'
+
+  .box#facts
+    h2 Facts
+    p
+      | I maintain a #{link_to 'facts database', 'http://facts.brandur.org'} to retain knowledge and try to make myself smarter. 
+      - if defined?(@fact)
+        | Most recently, I added facts on #{link_to @fact.category_name, "http://facts.brandur.org/#{@fact.category_permalink}"}.
+    = render :partial => 'facts_chart'
+
+  .box#github
+    h2 GitHub
+    p GitHub's is today's resume for the professional coder.
+    ul#actions
+      - @actions.each do |a|
+        li
+          = raw a.title
+          = ' '
+          span.meta= link_to distance_of_time_in_words(a.published_at.getlocal, Time.now, true), a.permalink
+          / GitHub's in our chain of trust
+          = raw a.content_html
+
+  /.box#photos
+    h2 Photos
+    ul.photos
+      - @photos.each do |p|
+        li
+          a href=p.permalink
+            img src=p.thumbnail_url
+    .clear
+    p My favorite collections of photos are from when <a href="http://www.flickr.com/photos/brandurleach/collections/72157613774765987/">I visited Japan</a>, and when <a href="http://www.flickr.com/photos/brandurleach/collections/72157601552888447/">I stayed in Iceland</a>.
+
+  .box#sel
+    h2 Self-development
+    ul
+      li Meditate 15 minutes per day to clear the mind, and maintain focus.
+      li Be the machine. Don't give into every emotional need, think about what your goals are and how you're going to accomplish them. #{link_to '1', 'http://coderoom.wordpress.com/2010/08/04/discipline-be-the-machine/'}
+      li Set goals every week. We're all wired for weakness, and some of us choose to be strong. #{link_to '2', 'http://www.sebastianmarshall.com/?p=222'}
+      li Chase meaning, not happiness. #{link_to '3', 'http://www.sebastianmarshall.com/?p=220'}
+      li Don't focus on yourself. Focus on others and genuinely like them. Everything you learn will be from other people. #{link_to '4', 'http://vimeo.com/11414505'}
+      li Use stoicism's negative visualization to lead a happier life. #{link_to '5', 'http://www.boingboing.net/2010/09/20/how-becoming-a-stoic.html#comments'}
+      li Wake at 4:30 AM, and finish personal projects in the 2-3 hours before work. #{link_to '6', 'http://www.sebastianmarshall.com/working-full-time-where-to-find-time-to-start-a-side-business'}
+      li Work on tangible stuff, document it, and claim credit. #{link_to '7', 'http://www.sebastianmarshall.com/how-to-get-a-raise'}
+
+  .box#twitter
+    h2= link_to 'Twitter', :twitter
+    p Microblogging lowers the barrier of broadcasting interesting things online. Here are my latest tweets:
+    ul
+      - @tweets.each do |t|
+        li
+          = raw t.content_html
+          = ' '
+          span.meta= link_to distance_of_time_in_words(t.published_at.getlocal, Time.now, true), t.permalink
+    p= link_to "Every one of my #{pluralize(Tweet.count, 'tweet')}", :twitter
+    = render :partial => 'tweet_chart'
+

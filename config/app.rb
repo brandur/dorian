@@ -10,7 +10,7 @@ class App < Configurable # :nodoc:
 
   # Personal information
   config.full_name    = 'Brandur Leach'
-  config.display_name = 'brandur'
+  config.display_name = 'brandur.org'
 
   # Configure modules below, comment the entire block out to disable a module
 
@@ -19,8 +19,22 @@ class App < Configurable # :nodoc:
     mod.atom = 'http://mutelight.org/atom.xml'
   end
 
+  for_module(:facts) do |mod|
+    mod.user = 'fyrerise'
+  end
+
+  for_module(:github) do |mod|
+    mod.user = 'brandur'
+  end
+
+  for_module(:goodreads) do |mod|
+    mod.key     = 'wqDUCoqpPtiL0LjflJQFrA'
+    mod.shelf   = 'read'
+    mod.user_id = '5896508'
+  end
+
   for_module(:twitter) do |mod|
-    # Your Twitter account's RSS feed
-    mod.rss = 'http://twitter.com/statuses/user_timeline/22980330.rss'
+    # Your Twitter account
+    mod.user = 'fyrerise'
   end
 end

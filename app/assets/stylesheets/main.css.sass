@@ -1,0 +1,78 @@
+@import 'mixins'
+
+/*
+ * Important constants
+ */
+
+$blue: #4477aa
+
+/*
+ * Basic elements
+ */
+
+a, a:visited, a:hover
+  color: $blue
+  text-decoration: none
+
+a:hover
+  text-decoration: underline
+
+body
+  color: #000
+  background: #fff
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif
+  font-size: 14px
+  font-weight: lighter
+  line-height: 1.8em
+  margin: 70px
+
+em
+  font-style: italic
+
+h1
+  font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif
+  font-size: 80px
+  font-weight: 100
+  line-height: 1em
+  margin: 40px 0
+
+h2, h3, h4
+  font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif
+  font-weight: 200
+  margin: 30px 0
+
+h2
+  font-size: 34px
+
+h3
+  font-size: 24px
+
+h2 a, h2 a:visited, h2 a:hover, h3 a, h3 a:visited, h3 a:hover, h4 a, h4 a:visited, h4 a:hover
+  color: #000
+  text-decoration: none
+
+p
+  line-height: 1.4em
+  text-align: justify
+  margin: 20px 0
+
+strong
+  color: $blue
+  font-weight: bold
+
+ul
+  list-style-type: disc
+  margin: 0 0 0 24px
+  padding: 0 0 0 24px
+
+  li
+    padding: 0 0 0 8px
+
+/*
+ * Global styles
+ */
+
+.chart
+  height: 200px
+  overflow: hidden
+  width: 100%

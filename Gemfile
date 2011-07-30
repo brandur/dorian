@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc4'
+gem 'rails', '3.1.0.rc5'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -8,8 +8,10 @@ gem 'rails', '3.1.0.rc4'
 gem 'app'
 gem 'coffee-script'
 gem 'jquery-rails'
+gem 'libxml-ruby'
 gem 'sass-rails', "~> 3.1.0.rc"
 gem 'slim'
+gem 'sql_funk', :git => 'git://github.com/lakim/sql_funk.git'
 gem 'sqlite3'
 gem 'uglifier'
 

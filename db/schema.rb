@@ -10,12 +10,50 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110728024426) do
+ActiveRecord::Schema.define(:version => 20110730040439) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
     t.string   "permalink"
     t.datetime "published_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "book_authors", :force => true do |t|
+    t.string   "book_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "books", :force => true do |t|
+    t.integer  "goodreads_id", :null => false
+    t.string   "isbn13"
+    t.string   "title",        :null => false
+    t.datetime "finished_at",  :null => false
+    t.integer  "num_pages",    :null => false
+    t.integer  "rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "facts", :force => true do |t|
+    t.integer  "facts_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.integer  "category_id"
+    t.string   "category_name"
+    t.string   "category_permalink"
+    t.datetime "updated_at"
+  end
+
+  create_table "github_actions", :force => true do |t|
+    t.string   "github_id"
+    t.string   "title"
+    t.string   "permalink"
+    t.datetime "published_at"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

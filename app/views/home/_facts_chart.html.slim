@@ -1,0 +1,54 @@
+.chart#facts_chart
+- content_for(:javascript) do
+  javascript:
+    var chart;
+    $(document).ready(function() {
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'facts_chart',
+          defaultSeriesType: 'column'
+        },
+        title: {
+          text: 'Facts Added in the Last 30 Days'
+        },
+        xAxis: {
+          categories: [ #{format_fact_stats(@fact_stats).map{|s| "'#{s['day']}'"}.join(', ')} ], 
+          labels: {
+            rotation: -45,
+            align: 'right',
+            step: 5
+          },
+          title: {
+            text: null
+          }
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: null
+          }
+        },
+        tooltip: {
+          formatter: function() {
+            return this.y + (this.y != 1 ? ' facts added' : ' fact added') + ' on ' + this.x;
+          }
+        },
+        plotOptions: {
+          bar: {
+            dataLabels: {
+              enabled: true
+            }
+          }
+        },
+        legend: {
+          enabled: false
+        },
+        credits: {
+          enabled: false
+        },
+        series: [{
+          name: 'Facts added',
+          data: [ #{format_fact_stats(@fact_stats).map{|s| s['count_all'] }.join(', ')} ]
+        }]
+      });
+    });
