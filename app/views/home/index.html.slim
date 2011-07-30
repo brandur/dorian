@@ -21,7 +21,11 @@
 
   .box_feature#projects
     h2 Projects
-    p Here are the projects that I'm currently involved in.
+    p These are the open source projects that I'm currently working on:
+    ul
+      li #{link_to 'Dorian', 'https://github.com/brandur/dorian'} &mdash; A personal identity manager and aggregator written in Rails 3.1. The site you're looking at now is a running demo of this project.
+      li #{link_to 'Facts', 'https://github.com/brandur/facts'} &mdash; A tool for getting smarter and winning arguments. Coupled with a #{link_to 'command line interface', 'https://github.com/brandur/facts-cli'} and an upcoming iOS app.
+      li #{link_to 'Askja', 'https://github.com/brandur/askja'} &mdash; Minimalist blogging platform written in Rails as a flexible alternative to static generators.
 
   .clear_fix
 
@@ -68,7 +72,7 @@
   .box_wide#github
     h2= link_to 'GitHub', 'https://github.com/brandur'
     = render :partial => 'charts/action_chart'
-    p GitHub's is today's resume for the professional coder.
+    p GitHub is today's resume for the professional coder, and is deeply integrated into my workflow. This is my latest activity:
     ul#actions
       - @actions.each do |a|
         li
@@ -89,19 +93,20 @@
     .clear
     p My favorite collections of photos are from when <a href="http://www.flickr.com/photos/brandurleach/collections/72157613774765987/">I visited Japan</a>, and when <a href="http://www.flickr.com/photos/brandurleach/collections/72157601552888447/">I stayed in Iceland</a>.
 
-  /.box#self
-    h2 Self-development
-    ul
-      li Meditate 15 minutes per day to clear the mind, and maintain focus.
-      li Be the machine. Don't give into every emotional need, think about what your goals are and how you're going to accomplish them. #{link_to '1', 'http://coderoom.wordpress.com/2010/08/04/discipline-be-the-machine/'}
-      li Set goals every week. We're all wired for weakness, and some of us choose to be strong. #{link_to '2', 'http://www.sebastianmarshall.com/?p=222'}
-      li Chase meaning, not happiness. #{link_to '3', 'http://www.sebastianmarshall.com/?p=220'}
-      li Don't focus on yourself. Focus on others and genuinely like them. Everything you learn will be from other people. #{link_to '4', 'http://vimeo.com/11414505'}
-      li Use stoicism's negative visualization to lead a happier life. #{link_to '5', 'http://www.boingboing.net/2010/09/20/how-becoming-a-stoic.html#comments'}
-      li Wake at 4:30 AM, and finish personal projects in the 2-3 hours before work. #{link_to '6', 'http://www.sebastianmarshall.com/working-full-time-where-to-find-time-to-start-a-side-business'}
-      li Work on tangible stuff, document it, and claim credit. #{link_to '7', 'http://www.sebastianmarshall.com/how-to-get-a-raise'}
-
   .clear_fix
+
+#self
+  h2 Self-development
+  p These are my current goals for continuing self improvement.
+  ul
+    li Meditate 15 minutes per day to clear the mind, and maintain focus.
+    li Be the machine. Don't give into every emotional need, think about what your goals are and how you're going to accomplish them. #{link_to '1', 'http://coderoom.wordpress.com/2010/08/04/discipline-be-the-machine/'}
+    li Set goals every week. We're all wired for weakness, and some of us choose to be strong. #{link_to '2', 'http://www.sebastianmarshall.com/?p=222'}
+    li Chase meaning, not happiness. #{link_to '3', 'http://www.sebastianmarshall.com/?p=220'}
+    li Don't focus on yourself. Focus on others and genuinely like them. Everything you learn will be from other people. #{link_to '4', 'http://vimeo.com/11414505'}
+    li Use stoicism's negative visualization to lead a happier life. #{link_to '5', 'http://www.boingboing.net/2010/09/20/how-becoming-a-stoic.html#comments'}
+    li Wake at 4:30 AM, and finish personal projects in the 2-3 hours before work. #{link_to '6', 'http://www.sebastianmarshall.com/working-full-time-where-to-find-time-to-start-a-side-business'}
+    li Work on tangible stuff, document it, and claim credit. #{link_to '7', 'http://www.sebastianmarshall.com/how-to-get-a-raise'}
 
 = render :partial => 'footer'
 
