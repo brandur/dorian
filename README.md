@@ -34,7 +34,7 @@ git clone https://github.com/brandur/dorian.git
 
 6. Update from all configured modules (e.g. Goodreads, Twitter, etc.) with `rake update` (again, specify `RAILS_ENV`).
 
-7. Start WebBrick with `rails s` (with a `RAILS_ENV`) and go to [localhost:3000](http://localhost:3000) (or deploy on a real Rails server like [Phusion Passenger](http://www.modrails.com/) or [Thin](http://code.macournoyer.com/thin/).
+7. Start WebBrick with `rails s` (with a `RAILS_ENV`) and go to [localhost:3000](http://localhost:3000), or deploy on a production Rails server like [Phusion Passenger](http://www.modrails.com/) or [Thin](http://code.macournoyer.com/thin/).
 
 ### Cron
 
