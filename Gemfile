@@ -14,6 +14,7 @@ gem 'slim'
 gem 'sql_funk', :git => 'git://github.com/lakim/sql_funk.git'
 gem 'sqlite3'
 gem 'uglifier'
+gem 'whenever', :require => false
 
 # Use unicorn as the web server
 # gem 'unicorn'
