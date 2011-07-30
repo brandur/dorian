@@ -1,0 +1,43 @@
+.chart#action_chart
+- content_for(:javascript) do
+  javascript:
+    var chart;
+    $(document).ready(function() {
+       chart = new Highcharts.Chart({
+          chart: {
+            renderTo: 'action_chart',
+            defaultSeriesType: 'line'
+          },
+          title: {
+            text: 'GitHub Actions by Month',
+          },
+          xAxis: {
+            categories: [ #{format_github_action_stats(@action_stats).map{|s| "'#{s['month']}'"}.join(', ')} ],
+            labels: {
+              rotation: -45,
+              align: 'right'
+            },
+          },
+          yAxis: {
+            min: 0,
+            title: {
+              text: null
+            }
+          },
+          tooltip: {
+            formatter: function() {
+              return this.y + (this.y != 1 ? ' actions' : ' action') + ' in ' + this.x;
+            }
+          },
+          legend: {
+            enabled: false
+          },
+          credits: {
+            enabled: false
+          },
+          series: [{
+            name: 'Tweets',
+            data: [ #{format_github_action_stats(@action_stats).map{|s| s['count_all']}.join(', ')} ]
+          }]
+       });
+    });

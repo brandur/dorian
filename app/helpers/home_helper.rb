@@ -10,6 +10,16 @@ module HomeHelper
     end
   end
 
+  def format_github_action_stats(stats)
+    return @formatted_github_action_stats if @formatted_github_action_stats
+    @formatted_github_action_stats = stats.map do |s|
+      month = s['month']
+      time = Time.new(month[0..4], month[5..7])
+      { 'month'     => time.strftime('%b %y'), 
+        'count_all' => s['count_all'] }
+    end
+  end
+
   def format_tweet_stats(stats)
     return @formatted_tweet_stats if @formatted_tweet_stats
     @formatted_tweet_stats = stats.map do |s|
