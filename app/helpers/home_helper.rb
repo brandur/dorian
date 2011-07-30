@@ -15,7 +15,7 @@ module HomeHelper
     @formatted_github_action_stats = stats.map do |s|
       month = s['month']
       time = Time.new(month[0..4], month[5..7])
-      { 'month'     => time.strftime('%b %y'), 
+      { 'month'     => time.strftime("%b \\'%y"), 
         'count_all' => s['count_all'] }
     end
   end
@@ -25,7 +25,7 @@ module HomeHelper
     @formatted_tweet_stats = stats.map do |s|
       month = s['month']
       time = Time.new(month[0..4], month[5..7])
-      { 'month'     => time.strftime('%b %y'), 
+      { 'month'     => time.strftime("%b \\'%y"), 
         'count_all' => s['count_all'] }
     end
   end

@@ -1,3 +1,14 @@
+@mixin columns($count, $width, $gap)
+  column-count: $count
+  column-width: $width
+  column-gap: $gap
+  -moz-column-count: $count
+  -moz-column-width: $width
+  -moz-column-gap: $gap
+  -webkit-column-count: $count
+  -webkit-column-width: $width
+  -webkit-column-gap: $gap
+
 @mixin transition($property, $duration)
   transition: $property $duration
   -moz-transition: $property $duration

@@ -2,8 +2,6 @@
   | #{App.full_name} &mdash; #{App.display_name}
 - content_for(:fonts) do
   link href='http://fonts.googleapis.com/css?family=Raleway:100|&amp;subset=latin' rel='stylesheet' type='text/css' 
-- content_for(:stylesheets) do
-  = stylesheet_link_tag 'index'
 
 #header
   h1= App.display_name
@@ -43,7 +41,7 @@
       | These days I try to read mostly non-fiction. #{link_to 'My entire reading history', 'http://www.goodreads.com/review/list/5896508?shelf=read'} is available online. 
       - if @book
         | The most recent book that I read was <em>#{@book.title}</em> by #{@book.author}.
-    = render :partial => 'book_chart'
+    = render :partial => 'charts/book_chart'
 
   .box#facts
     h2= link_to 'Facts', 'http://facts.brandur.org'
@@ -51,13 +49,13 @@
       | I maintain a #{link_to 'facts database', 'http://facts.brandur.org'} to retain knowledge and try to make myself smarter. 
       - if defined?(@fact)
         | Most recently, I added facts on #{link_to @fact.category_name, "http://facts.brandur.org/#{@fact.category_permalink}"}.
-    = render :partial => 'facts_chart'
+    = render :partial => 'charts/facts_chart'
 
   .clear_fix
 
   .box_wide#twitter
     h2= link_to 'Twitter', :twitter
-    = render :partial => 'tweet_chart'
+    = render :partial => 'charts/tweet_chart'
     p Microblogging lowers the barrier of broadcasting interesting things online. Here are my latest tweets:
     ul
       - @tweets.each do |t|
@@ -69,7 +67,7 @@
 
   .box_wide#github
     h2= link_to 'GitHub', 'https://github.com/brandur'
-    = render :partial => 'action_chart'
+    = render :partial => 'charts/action_chart'
     p GitHub's is today's resume for the professional coder.
     ul#actions
       - @actions.each do |a|
