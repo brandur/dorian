@@ -7,6 +7,10 @@ every 30.minutes do
   rake 'update'
 end
 
+every 10.minutes do
+  rake 'expire'
+end
+
 # Example:
 #
 # set :output, "/path/to/my/cron_log.log"

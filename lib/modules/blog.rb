@@ -4,6 +4,10 @@ require 'rss_helper'
 class Blog < ModuleBase
   include RssHelper
 
+  def expire
+    expire_page '/'
+  end
+
   def update
     num_updates = 0
     rss_for(config.atom) do |item|
@@ -17,11 +21,5 @@ class Blog < ModuleBase
       end
     end
     puts "Fetched #{num_updates} new article(s)"
-  end
-
-private
-
-  def expire
-    expire_page '/'
   end
 end

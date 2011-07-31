@@ -4,6 +4,10 @@ require 'json_helper'
 class Facts < ModuleBase
   include JsonHelper
 
+  def expire
+    expire_page '/'
+  end
+
   def update
     num_updates = 0
     json_for("http://facts.brandur.org/users/#{config.user}.json?limit=100") do |json|
@@ -24,11 +28,5 @@ class Facts < ModuleBase
       end
     end
     puts "Fetched #{num_updates} new fact(s)"
-  end
-
-private
-
-  def expire
-    expire_page '/'
   end
 end

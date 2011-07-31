@@ -4,6 +4,10 @@ require 'xml_helper'
 class Goodreads < ModuleBase
   include XmlHelper
 
+  def expire
+    expire_page '/'
+  end
+
   def update
     num_updates = 0
     uri = "http://www.goodreads.com/review/list/#{config.user_id}.xml?v=2&per_page=200&shelf=read&sort=date_read&key=#{config.key}"
@@ -24,11 +28,5 @@ class Goodreads < ModuleBase
       end
     end
     puts "Fetched #{num_updates} new book(s)"
-  end
-
-private
-
-  def expire
-    expire_page '/'
   end
 end

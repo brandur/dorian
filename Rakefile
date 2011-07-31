@@ -6,6 +6,13 @@ require File.expand_path('../config/application', __FILE__)
 
 Dorian::Application.load_tasks
 
+desc 'Expires everything so that pages show fresher timestamps'
+task :expire => :environment do
+  App.module_instances do |mod|
+    mod.expire
+  end
+end
+
 desc 'Deploys a new secret token to config/initializers/secret_token.rb'
 task :secret_deploy do
   secret = `rake secret`.strip
