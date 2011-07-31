@@ -12,7 +12,7 @@ module HomeHelper
 
   def format_github_action_stats(stats)
     return @formatted_github_action_stats if @formatted_github_action_stats
-    @formatted_github_action_stats = stats.map do |s|
+    @formatted_github_action_stats = stats.reverse.map do |s|
       month = s['month']
       time = Time.new(month[0..4], month[5..7])
       { 'month'     => time.strftime("%b \\'%y"), 
@@ -22,7 +22,7 @@ module HomeHelper
 
   def format_tweet_stats(stats)
     return @formatted_tweet_stats if @formatted_tweet_stats
-    @formatted_tweet_stats = stats.map do |s|
+    @formatted_tweet_stats = stats.reverse.map do |s|
       month = s['month']
       time = Time.new(month[0..4], month[5..7])
       { 'month'     => time.strftime("%b \\'%y"), 
