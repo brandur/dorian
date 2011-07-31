@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @actions      = GithubAction.limit(5)
-    @action_stats = Tweet.count_by('published_at', :group_by => 'month')
+    @action_stats = GithubAction.count_by('published_at', :group_by => 'month')
     @articles     = Article.limit(5)
     @book         = Book.first
     @book_stats   = Book.count_by('finished_at', :group_by => 'year')
