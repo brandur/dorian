@@ -2,20 +2,29 @@
   == 'Twitter &mdash; brandur.org'
 
 h1 Twitter
-p Every one of my tweets. Ever. That's right, all #{@tweets.count.to_s} of them.
-= render :partial => 'charts/tweet_chart'
 
-#twitter_complete
-  ul
-    - @tweets.each do |t|
-      li
-        = raw t.content_html
-        = ' '
-        span.meta
-          - cutoff = Time.now - 1.year
-          - if t.published_at > cutoff
-            a(href=t.permalink) #{distance_of_time_in_words(t.published_at.getlocal, Time.now, true)} ago
-          - else
-            a(href=t.permalink)= t.published_at.getlocal.strftime('%b %e, %Y %H:%M')
+.row
+  .col_12.last
+    p Every one of my tweets. Ever. That's right, all #{@tweets.count.to_s} of them.
 
-= render :partial => 'home/footer'
+.row
+  .col_12.last
+    = render :partial => 'charts/tweet_chart'
+
+.row
+  .col_12.last#twitter_complete
+    ul
+      - @tweets.each do |t|
+        li
+          = raw t.content_html
+          = ' '
+          span.meta
+            - cutoff = Time.now - 1.year
+            - if t.published_at > cutoff
+              a(href=t.permalink) #{distance_of_time_in_words(t.published_at.getlocal, Time.now, true)} ago
+            - else
+              a(href=t.permalink)= t.published_at.getlocal.strftime('%b %e, %Y %H:%M')
+
+.row
+  .col_12.last
+    = render :partial => 'home/footer'

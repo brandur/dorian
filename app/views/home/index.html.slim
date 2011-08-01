@@ -9,79 +9,78 @@
   /p#special I'm currently in Las Vegas for #{link_to '#mix11', 'http://live.visitmix.com'}, #{link_to 'follow me!', 'http://twitter.com/fyrerise'}
 
 #boxes
-  .box_feature#about
-    h2 About
-    p
-      | I'm a .NET and Rails designer, developer, and architect working out of Calgary. I've done extensive development work, and I'll work on almost any technology stack. Drop me a line at 
-      a(href='mailto: brandur@mutelight.org') brandur@mutelight.org
-      | .
-    p I'm interested in energy and how it relates to our society, muay thai, breakdancing, symphonic metal, surfing, and the guitar.
-    p  
-      a(href='http://twitter.com/fyrerise' title='Follow Brandur on Twitter') You should follow me on Twitter.
+  .row
+    .col_6#about
+      h2 About
+      p
+        | I'm a .NET and Rails designer, developer, and architect working out of Calgary. I've done extensive development work, and I'll work on almost any technology stack. Drop me a line at 
+        a(href='mailto: brandur@mutelight.org') brandur@mutelight.org
+        | .
+      p I'm interested in energy and how it relates to our society, muay thai, breakdancing, symphonic metal, surfing, and the guitar.
+      p  
+        a(href='http://twitter.com/fyrerise' title='Follow Brandur on Twitter') You should follow me on Twitter.
 
-  .box_feature#projects
-    h2 Projects
-    p These are the open source projects that I'm currently working on:
-    ul
-      li #{link_to 'Dorian', 'https://github.com/brandur/dorian'} &mdash; A personal identity manager and aggregator written in Rails 3.1. The site you're looking at now is a running demo of this project.
-      li #{link_to 'Facts', 'https://github.com/brandur/facts'} &mdash; A tool for getting smarter and winning arguments. Coupled with a #{link_to 'command line interface', 'https://github.com/brandur/facts-cli'} and an upcoming iOS app.
-      li #{link_to 'Askja', 'https://github.com/brandur/askja'} &mdash; Minimalist blogging platform written in Rails as a flexible alternative to static generators.
+    .col_6.last#projects
+      h2 Projects
+      p These are the open source projects that I'm currently working on:
+      ul
+        li #{link_to 'Dorian', 'https://github.com/brandur/dorian'} &mdash; A personal identity manager and aggregator written in Rails 3.1. The site you're looking at now is a running demo of this project.
+        li #{link_to 'Facts', 'https://github.com/brandur/facts'} &mdash; A tool for getting smarter and winning arguments. Coupled with a #{link_to 'command line interface', 'https://github.com/brandur/facts-cli'} and an upcoming iOS app.
+        li #{link_to 'Askja', 'https://github.com/brandur/askja'} &mdash; Minimalist blogging platform written in Rails as a flexible alternative to static generators.
 
-  .clear_fix
+  .row
+    .col_4#articles
+      h2= link_to 'Articles', 'http://mutelight.org'
+      p I <a href="http://mutelight.org">blog about technology</a> and other interesting things. Here are the latest articles that I've written:
+      ul
+        - @articles.each do |a|
+          li
+            = link_to a.title, a.permalink
+            = ' '
+            span.meta= a.published_at.getlocal.strftime('%b %e, %Y')
 
-  .box#articles
-    h2= link_to 'Articles', 'http://mutelight.org'
-    p I <a href="http://mutelight.org">blog about technology</a> and other interesting things. Here are the latest articles that I've written:
-    ul
-      - @articles.each do |a|
-        li
-          = link_to a.title, a.permalink
-          = ' '
-          span.meta= a.published_at.getlocal.strftime('%b %e, %Y')
+    .col_4#books
+      h2= link_to 'Books', 'http://www.goodreads.com/review/list/5896508?shelf=read'
+      p
+        | These days I try to read mostly non-fiction. #{link_to 'My entire reading history', 'http://www.goodreads.com/review/list/5896508?shelf=read'} is available online. 
+        - if @book
+          | The most recent book that I read was <em>#{@book.title}</em> by #{@book.author}.
+      = render :partial => 'charts/book_chart'
 
-  .box#books
-    h2= link_to 'Books', 'http://www.goodreads.com/review/list/5896508?shelf=read'
-    p
-      | These days I try to read mostly non-fiction. #{link_to 'My entire reading history', 'http://www.goodreads.com/review/list/5896508?shelf=read'} is available online. 
-      - if @book
-        | The most recent book that I read was <em>#{@book.title}</em> by #{@book.author}.
-    = render :partial => 'charts/book_chart'
+    .col_4.last#facts
+      h2= link_to 'Facts', 'http://facts.brandur.org'
+      p
+        | I maintain a #{link_to 'facts database', 'http://facts.brandur.org'} to retain knowledge and try to make myself smarter. 
+        - if defined?(@fact)
+          | Most recently, I added facts on #{link_to @fact.category_name, "http://facts.brandur.org/#{@fact.category_permalink}"}.
+      = render :partial => 'charts/facts_chart'
 
-  .box#facts
-    h2= link_to 'Facts', 'http://facts.brandur.org'
-    p
-      | I maintain a #{link_to 'facts database', 'http://facts.brandur.org'} to retain knowledge and try to make myself smarter. 
-      - if defined?(@fact)
-        | Most recently, I added facts on #{link_to @fact.category_name, "http://facts.brandur.org/#{@fact.category_permalink}"}.
-    = render :partial => 'charts/facts_chart'
+  .row
+    .col_6#twitter
+      h2= link_to 'Twitter', :twitter
+      = render :partial => 'charts/tweet_chart'
+      p Microblogging lowers the barrier of broadcasting interesting things online. Here are my latest tweets:
+      ul
+        - @tweets.each do |t|
+          li
+            = raw t.content_html
+            = ' '
+            span.meta= link_to distance_of_time_in_words(t.published_at.getlocal, Time.now, true), t.permalink
+      p= link_to "Every one of my #{pluralize(Tweet.count, 'tweet')}", :twitter
 
-  .clear_fix
-
-  .box_wide#twitter
-    h2= link_to 'Twitter', :twitter
-    = render :partial => 'charts/tweet_chart'
-    p Microblogging lowers the barrier of broadcasting interesting things online. Here are my latest tweets:
-    ul
-      - @tweets.each do |t|
-        li
-          = raw t.content_html
-          = ' '
-          span.meta= link_to distance_of_time_in_words(t.published_at.getlocal, Time.now, true), t.permalink
-    p= link_to "Every one of my #{pluralize(Tweet.count, 'tweet')}", :twitter
-
-  .box_wide#github
-    h2= link_to 'GitHub', 'https://github.com/brandur'
-    = render :partial => 'charts/action_chart'
-    p GitHub is today's resume for the professional coder, and is deeply integrated into my workflow. This is my latest activity:
-    ul#actions
-      - @actions.each do |a|
-        li
-          = raw a.title
-          = ' '
-          span.meta= link_to distance_of_time_in_words(a.published_at.getlocal, Time.now, true), a.permalink
-          / GitHub's in our chain of trust
-          = raw a.content_html
-    p= link_to "See my Github profile", 'https://github.com/brandur'
+    .col_6.last#github
+      h2= link_to 'GitHub', 'https://github.com/brandur'
+      = render :partial => 'charts/action_chart'
+      p GitHub is today's resume for the professional coder, and is deeply integrated into my workflow. This is my latest activity:
+      ul#actions
+        - @actions.each do |a|
+          li
+            = raw a.title
+            = ' '
+            span.meta= link_to distance_of_time_in_words(a.published_at.getlocal, Time.now, true), a.permalink
+            / GitHub's in our chain of trust
+            = raw a.content_html
+      p= link_to "See my Github profile", 'https://github.com/brandur'
 
   /.box#photos
     h2 Photos
@@ -93,20 +92,21 @@
     .clear
     p My favorite collections of photos are from when <a href="http://www.flickr.com/photos/brandurleach/collections/72157613774765987/">I visited Japan</a>, and when <a href="http://www.flickr.com/photos/brandurleach/collections/72157601552888447/">I stayed in Iceland</a>.
 
-  .clear_fix
+  .row
+    .col_12.last#self
+      h2 Self-development
+      p These are my current goals for continuing self improvement.
+      ul
+        li Meditate 15 minutes per day to clear the mind, and maintain focus.
+        li Be the machine. Don't give into every emotional need, think about what your goals are and how you're going to accomplish them. #{link_to '1', 'http://coderoom.wordpress.com/2010/08/04/discipline-be-the-machine/'}
+        li Set goals every week. We're all wired for weakness, and some of us choose to be strong. #{link_to '2', 'http://www.sebastianmarshall.com/?p=222'}
+        li Chase meaning, not happiness. #{link_to '3', 'http://www.sebastianmarshall.com/?p=220'}
+        li Don't focus on yourself. Focus on others and genuinely like them. Everything you learn will be from other people. #{link_to '4', 'http://vimeo.com/11414505'}
+        li Use stoicism's negative visualization to lead a happier life. #{link_to '5', 'http://www.boingboing.net/2010/09/20/how-becoming-a-stoic.html#comments'}
+        li Wake at 4:30 AM, and finish personal projects in the 2-3 hours before work. #{link_to '6', 'http://www.sebastianmarshall.com/working-full-time-where-to-find-time-to-start-a-side-business'}
+        li Work on tangible stuff, document it, and claim credit. #{link_to '7', 'http://www.sebastianmarshall.com/how-to-get-a-raise'}
 
-#self
-  h2 Self-development
-  p These are my current goals for continuing self improvement.
-  ul
-    li Meditate 15 minutes per day to clear the mind, and maintain focus.
-    li Be the machine. Don't give into every emotional need, think about what your goals are and how you're going to accomplish them. #{link_to '1', 'http://coderoom.wordpress.com/2010/08/04/discipline-be-the-machine/'}
-    li Set goals every week. We're all wired for weakness, and some of us choose to be strong. #{link_to '2', 'http://www.sebastianmarshall.com/?p=222'}
-    li Chase meaning, not happiness. #{link_to '3', 'http://www.sebastianmarshall.com/?p=220'}
-    li Don't focus on yourself. Focus on others and genuinely like them. Everything you learn will be from other people. #{link_to '4', 'http://vimeo.com/11414505'}
-    li Use stoicism's negative visualization to lead a happier life. #{link_to '5', 'http://www.boingboing.net/2010/09/20/how-becoming-a-stoic.html#comments'}
-    li Wake at 4:30 AM, and finish personal projects in the 2-3 hours before work. #{link_to '6', 'http://www.sebastianmarshall.com/working-full-time-where-to-find-time-to-start-a-side-business'}
-    li Work on tangible stuff, document it, and claim credit. #{link_to '7', 'http://www.sebastianmarshall.com/how-to-get-a-raise'}
-
-= render :partial => 'footer'
+.row
+  .col_12.last
+    = render :partial => 'footer'
 
