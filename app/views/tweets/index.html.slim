@@ -1,7 +1,11 @@
 - content_for(:title) do
   == 'Twitter &mdash; brandur.org'
 
-h1 Twitter
+.row
+  .col12.last#header
+    header
+      = render :partial => 'shared/go_home'
+      h1 Twitter
 
 .row
   .col_12.last

@@ -3,10 +3,12 @@
 - content_for(:fonts) do
   link href='http://fonts.googleapis.com/css?family=Raleway:100|&amp;subset=latin' rel='stylesheet' type='text/css' 
 
-#header
-  h1= App.display_name
-  /p#special I'm in Austin, TX for #{link_to '#sxsw', 'http://sxsw.com'}, #{link_to 'follow me!', 'http://twitter.com/fyrerise'}
-  /p#special I'm currently in Las Vegas for #{link_to '#mix11', 'http://live.visitmix.com'}, #{link_to 'follow me!', 'http://twitter.com/fyrerise'}
+.row
+  .col_12.last#header
+    header
+      h1= App.display_name
+      /p#special I'm in Austin, TX for #{link_to '#sxsw', 'http://sxsw.com'}, #{link_to 'follow me!', 'http://twitter.com/fyrerise'}
+      /p#special I'm currently in Las Vegas for #{link_to '#mix11', 'http://live.visitmix.com'}, #{link_to 'follow me!', 'http://twitter.com/fyrerise'}
 
 #boxes
   .row
