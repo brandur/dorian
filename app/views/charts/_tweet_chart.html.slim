@@ -15,7 +15,8 @@
             categories: [ #{format_tweet_stats(@tweet_stats).map{|s| "'#{s['month']}'"}.join(', ')} ],
             labels: {
               rotation: -45,
-              align: 'right'
+              align: 'right', 
+              step: #{defined?(is_compact) && is_compact ? 2 : 1}
             },
           },
           yAxis: {

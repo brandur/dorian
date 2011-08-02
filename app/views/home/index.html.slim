@@ -58,7 +58,7 @@
   .row
     .col_6#twitter
       h2= link_to 'Twitter', :twitter
-      = render :partial => 'charts/tweet_chart'
+      = render :partial => 'charts/tweet_chart', :locals => { :is_compact => true }
       p Microblogging lowers the barrier of broadcasting interesting things online. Here are my latest tweets:
       ul
         - @tweets.each do |t|
@@ -70,7 +70,7 @@
 
     .col_6.last#github
       h2= link_to 'GitHub', 'https://github.com/brandur'
-      = render :partial => 'charts/action_chart'
+      = render :partial => 'charts/action_chart', :locals => { :is_compact => true }
       p GitHub is today's resume for the professional coder, and is deeply integrated into my workflow. This is my latest activity:
       ul#actions
         - @actions.each do |a|
