@@ -7,31 +7,22 @@
       = render :partial => 'shared/go_home'
       h1 Twitter
 
-.row
-  .col_12.last
-    p Every one of my tweets. Ever. That's right, all #{@tweet_count} of them.
+      p Every one of my tweets. Ever. That's right, all #{@tweet_count} of them.
+      = render :partial => 'charts/tweet_chart'
 
-.row
-  .col_12.last
-    = render :partial => 'charts/tweet_chart'
+      - @tweets_by_year.each do |year, tweets|
+        h2= year
+        .twitter_year
+          ul
+            - tweets.each do |t|
+              li
+                = raw t.content_html
+                = ' '
+                span.meta
+                  - cutoff = Time.now - 1.year
+                  - if t.published_at > cutoff
+                    a(href=t.permalink) #{distance_of_time_in_words(t.published_at.getlocal, Time.now, true)} ago
+                  - else
+                    a(href=t.permalink)= t.published_at.getlocal.strftime('%b %e, %Y %H:%M')
 
-- @tweets_by_year.each do |year, tweets|
-  .row
-    .col_12.last
-      h2= year
-      .twitter_year
-        ul
-          - tweets.each do |t|
-            li
-              = raw t.content_html
-              = ' '
-              span.meta
-                - cutoff = Time.now - 1.year
-                - if t.published_at > cutoff
-                  a(href=t.permalink) #{distance_of_time_in_words(t.published_at.getlocal, Time.now, true)} ago
-                - else
-                  a(href=t.permalink)= t.published_at.getlocal.strftime('%b %e, %Y %H:%M')
-
-.row
-  .col_12.last
     = render :partial => 'shared/footer'
