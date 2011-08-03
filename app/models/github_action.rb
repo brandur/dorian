@@ -4,7 +4,7 @@ class GithubAction < ActiveRecord::Base
   validates_uniqueness_of :github_id
 
   def content_html
-    c = content.gsub /href\s*=\s*["'](.*?)["']/, 'href="https://github.com\1"'
+    c = content.gsub /href\s*=\s*["']([^(http)].*?)["']/, 'href="https://github.com\1"'
     c
   end
 end
