@@ -42,9 +42,9 @@
             span.meta= a.published_at.getlocal.strftime('%b %e, %Y')
 
     .col_4#books
-      h2= link_to 'Books', 'http://www.goodreads.com/review/list/5896508?shelf=read'
+      h2= link_to 'Books', :books
       p
-        | These days I try to read mostly non-fiction. #{link_to 'My entire reading history', 'http://www.goodreads.com/review/list/5896508?shelf=read'} is available online. 
+        | These days I try to read mostly non-fiction. #{link_to 'My entire reading history', :books} is available online. 
         - if @book
           | The most recent book that I read was <em>#{@book.title}</em> by #{@book.author}.
       = render :partial => 'charts/book_chart'

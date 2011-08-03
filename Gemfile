@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'libxml-ruby'
 gem 'sass-rails', "~> 3.1.0.rc"
 gem 'slim'
-gem 'sql_funk', :git => 'git://github.com/lakim/sql_funk.git'
+gem 'sql_funk', :git => 'git://github.com/brandur/sql_funk.git'
 gem 'sqlite3'
 gem 'uglifier'
 gem 'whenever', :require => false

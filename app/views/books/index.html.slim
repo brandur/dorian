@@ -1,0 +1,35 @@
+- content_for(:title) do
+  == 'Books &mdash; brandur.org'
+
+.row
+  .col_12.last#header
+    header
+      = render :partial => 'shared/go_home'
+      h1 Books
+
+    p I've read #{pluralize(@books_count, 'book')} since #{@books_by_year.keys.min}, the most recent of which was <em>#{@book.title}</em> by #{@book.author}. I track my reading with #{link_to 'Goodreads', 'http://www.goodreads.com/review/list/5896508?shelf=read'}.
+
+.row
+  .col_6
+    = render :partial => 'charts/book_chart'
+  .col_6.last
+    = render :partial => 'charts/book_chart_by_num_pages'
+
+.row
+  .col_12.last#header
+    - cutoff = Time.now - 1.year
+    - @books_by_year.each do |year, books|
+      h2= year
+      .books_year
+        ul
+          - books.each do |b|
+            li
+              - if b.finished_at > cutoff
+                - finished = "#{distance_of_time_in_words(b.finished_at.getlocal, Time.now, true)} ago"
+              - else
+                - finished = b.finished_at.getlocal.strftime('%b %e, %Y')
+              | <em>#{link_to b.title, "http://www.goodreads.com/book/show/#{b.goodreads_id}"}</em> by #{b.author}
+              = ' '
+              span.meta #{pluralize b.num_pages, 'page'}, ISBN13: #{link_to format_isbn13(b.isbn13), "http://www.google.com/search?tbo=p&tbm=bks&q=isbn:#{b.isbn13}"}, finished #{finished}
+
+    = render :partial => 'shared/footer'
