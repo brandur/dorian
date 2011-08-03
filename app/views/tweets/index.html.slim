@@ -8,7 +8,7 @@
       h1 Twitter
 
     p Every one of my tweets. Ever. That's right, all #{@tweet_count} of them.
-    = render :partial => 'charts/tweet_chart'
+    = render :partial => 'charts/tweets_chart'
 
     - @tweets_by_year.each do |year, tweets|
       h2= year
