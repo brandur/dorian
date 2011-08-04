@@ -30,6 +30,10 @@
                 - finished = b.finished_at.getlocal.strftime('%b %e, %Y')
               | <em>#{link_to b.title, "http://www.goodreads.com/book/show/#{b.goodreads_id}"}</em> by #{b.author}
               = ' '
-              span.meta #{pluralize b.num_pages, 'page'}, ISBN13: #{link_to format_isbn13(b.isbn13), "http://www.google.com/search?tbo=p&tbm=bks&q=isbn:#{b.isbn13}"}, finished #{finished}
+              span.meta 
+                | #{pluralize b.num_pages, 'page'}, 
+                - unless b.isbn13.empty?
+                  | ISBN13: #{link_to format_isbn13(b.isbn13), "http://www.google.com/search?tbo=p&tbm=bks&q=isbn:#{b.isbn13}"}, 
+                | finished #{finished}
 
     = render :partial => 'shared/footer'
