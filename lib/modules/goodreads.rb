@@ -6,6 +6,7 @@ class Goodreads < ModuleBase
 
   def expire
     expire_page '/'
+    expire_page '/books'
   end
 
   def update
