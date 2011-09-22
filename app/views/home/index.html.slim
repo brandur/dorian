@@ -26,8 +26,9 @@
       h2 Projects
       p These are the open source projects that I'm currently working on:
       ul
+        li #{link_to 'Parched', 'https://github.com/brandur/parched'} &mdash; A minimalist Git-backed wiki with support for Tilt's set of template engines, syntax highlighting, and MathJax.
         li #{link_to 'Dorian', 'https://github.com/brandur/dorian'} &mdash; A personal identity manager and aggregator written in Rails 3.1. The site you're looking at now is a running demo of this project.
-        li #{link_to 'Facts', 'https://github.com/brandur/facts'} &mdash; A tool for getting smarter and winning arguments. Coupled with a #{link_to 'command line interface', 'https://github.com/brandur/facts-cli'} and an upcoming iOS app.
+        li #{link_to 'Facts', 'https://github.com/brandur/facts'} &mdash; A tool for getting smarter and winning arguments. Coupled with a #{link_to 'command line interface', 'https://github.com/brandur/facts-cli'} and a #{link_to 'Twitter bot', 'https://github.com/brandur/facts-twitter'}.
         li #{link_to 'Askja', 'https://github.com/brandur/askja'} &mdash; Minimalist blogging platform written in Rails as a flexible alternative to static generators.
 
   .row
@@ -54,7 +55,8 @@
       p
         | I maintain a #{link_to 'facts database', 'http://facts.brandur.org'} to retain knowledge and try to make myself smarter. 
         - if defined?(@fact)
-          | Most recently, I added facts on #{link_to @fact.category_name, "http://facts.brandur.org/#{@fact.category_permalink}"}.
+          | Most recently, I added facts on #{link_to @fact.category_name, "http://facts.brandur.org/#{@fact.category_permalink}"}. 
+        | Get a slow stream of random facts by following #{link_to '@factsproject', 'http://twitter.com/factsproject'}.
       = render :partial => 'charts/facts_chart'
 
   .row
