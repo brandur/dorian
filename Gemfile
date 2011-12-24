@@ -12,7 +12,6 @@ gem 'libxml-ruby'
 gem 'sass'
 gem 'slim'
 gem 'sql_funk', :git => 'git://github.com/brandur/sql_funk.git'
-gem 'sqlite3'
 gem 'uglifier'
 gem 'whenever', :require => false
 
@@ -27,6 +26,7 @@ gem 'whenever', :require => false
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'sqlite3'
   # Pretty printed test output
   gem 'turn', :require => false
 end
