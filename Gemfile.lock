@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/brandur/sql_funk.git
-  revision: 7615048ba5be326eaf81daddafe69551a66c5242
+  revision: 13971ae9324dd2f3ed89c87cf50720c25667743f
   specs:
     sql_funk (0.0.1)
 
