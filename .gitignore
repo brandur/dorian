@@ -13,4 +13,3 @@ ruby/**/*
 test/
 tmp/**/*
 vendor/**/*
-config/initializers/secret_token.rb
