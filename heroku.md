@@ -21,3 +21,8 @@ When making a change to the Rails app, checkout `master`, commit the changes, th
 Deploy production to Heroku as described [on Stack Overflow](http://stackoverflow.com/questions/1489393/good-git-deployment-using-branches-strategy-with-heroku):
 
     git push heroku production:master
+
+Multiple Environments
+---------------------
+
+It's often useful to have both a `staging` and `production` Heroku app, and if you do, it's very convenient to link a local branch to each of these remote applications. This process is described [in Heroku's docs](http://devcenter.heroku.com/articles/multiple-environments#advanced_linking_local_branches_to_remote_apps).
