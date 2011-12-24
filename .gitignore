@@ -1,5 +1,5 @@
 .bundle
-config/app.rb
+.sass-cache
 config/config.yml
 content
 current_article
