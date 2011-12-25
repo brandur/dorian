@@ -6,4 +6,5 @@
 //
 //noinc= require jquery_ujs
 //= require jquery-1.7.1
+//= require highcharts.src
 //= require_tree .
