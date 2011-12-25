@@ -12,7 +12,7 @@
           text: 'Facts Added in the Last 30 Days'
         },
         xAxis: {
-          categories: [ #{format_fact_stats(@fact_stats).map{|s| "'#{s['day']}'"}.join(', ')} ], 
+          categories: [ #{@fact_count_by_day.map{|k, v| "'#{k.strftime('%b %e')}'"}.join(', ')} ], 
           labels: {
             rotation: -45,
             align: 'right',
@@ -48,7 +48,7 @@
         },
         series: [{
           name: 'Facts added',
-          data: [ #{format_fact_stats(@fact_stats).map{|s| s['count_all'] }.join(', ')} ]
+          data: [ #{@fact_count_by_day.map{|k, v| v}.join(', ')} ]
         }]
       });
     });

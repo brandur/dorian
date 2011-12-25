@@ -1,7 +1,7 @@
 require 'extensions'
 
 class Book < ActiveRecord::Base
-  default_scope :order => 'finished_at DESC'
+  scope :ordered, order(:order => 'finished_at DESC')
   has_many :authors, :class_name => 'BookAuthor'
   validates_presence_of :goodreads_id, :title, :finished_at, :num_pages
   validates_uniqueness_of :goodreads_id
@@ -12,7 +12,7 @@ class Book < ActiveRecord::Base
 
   def author
     if self.authors.size > 1
-      author_parts = self.authors.map{|a| a.name}.intersperse(', ')
+      author_parts = self.authors.order('name ASC').map{|a| a.name}.intersperse(', ')
       author_parts[author_parts.size - 2] = ', and '
       author_parts.join
     elsif self.authors.size == 1

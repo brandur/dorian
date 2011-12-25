@@ -2,14 +2,16 @@ class HomeController < ApplicationController
   caches_page :index
 
   def index
-    @actions      = GithubAction.limit(5)
-    @action_stats = GithubAction.count_by('published_at', :group_by => 'month')
-    @articles     = Article.limit(5)
-    @book         = Book.first
-    @book_stats   = Book.count_by('finished_at', :group_by => 'year')
-    @fact         = Fact.first
-    @fact_stats   = Fact.where('created_at > ?', 30.days.ago).count_by('created_at', :group_by => 'day')
-    @tweets       = Tweet.limit(10)
-    @tweet_stats  = Tweet.count_by('published_at', :group_by => 'month')
+    @actions               = GithubAction.ordered.limit(5)
+    @action_count_by_month = GithubAction.ordered.count_by{|a| a.published_at.beginning_of_month}
+    @articles              = Article.ordered.limit(5)
+    @book                  = Book.ordered.first
+    @book_count_by_year    = Book.ordered.count_by{|b| b.finished_at.beginning_of_year}
+    @fact                  = Fact.ordered.first
+    @fact_count_by_day     = Fact.ordered
+      .where('created_at > ?', 30.days.ago)
+      .count_by{|f| f.created_at.beginning_of_day}
+    @tweets                = Tweet.ordered.limit(10)
+    @tweet_count_by_month  = Tweet.ordered.count_by{|t| t.published_at.beginning_of_month}
   end
 end

@@ -12,7 +12,7 @@
             text: 'GitHub Actions by Month',
           },
           xAxis: {
-            categories: [ #{format_github_action_stats(@action_stats).map{|s| "'#{s['month']}'"}.join(', ')} ],
+            categories: [ #{@action_count_by_month.map{|k, v| "'#{k.strftime("%b \\'%y")}'"}.join(', ')} ],
             labels: {
               rotation: -45,
               align: 'right', 
@@ -38,7 +38,7 @@
           },
           series: [{
             name: 'Tweets',
-            data: [ #{format_github_action_stats(@action_stats).map{|s| s['count_all']}.join(', ')} ]
+            data: [ #{@action_count_by_month.map{|k, v| v}.join(', ')} ]
           }]
        });
     });

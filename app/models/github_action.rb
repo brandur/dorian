@@ -1,5 +1,5 @@
 class GithubAction < ActiveRecord::Base
-  default_scope :order => 'published_at DESC'
+  scope :ordered, order(:order => 'published_at DESC')
   validates_presence_of :github_id, :title, :permalink, :published_at, :content
   validates_uniqueness_of :github_id
 

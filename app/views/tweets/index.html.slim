@@ -7,14 +7,14 @@
       = render :partial => 'shared/go_home'
       h1 Twitter
 
-    p Every one of my tweets. Ever. That's right, all #{@tweet_count} of them.
+    p Every one of my tweets. Ever. That's right, all #{number_with_delimiter(@tweet_count)} of them.
     = render :partial => 'charts/tweets_chart'
 
     - @tweets_by_year.each do |year, tweets|
       h2= year
       .twitter_year
         ul
-          - tweets.each do |t|
+          - tweets.sort!{|t1, t2| t2.published_at <=> t1.published_at}.each do |t|
             li
               = raw t.content_html
               = ' '

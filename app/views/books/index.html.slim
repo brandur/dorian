@@ -7,7 +7,7 @@
       = render :partial => 'shared/go_home'
       h1 Books
 
-    p I've read #{pluralize(@books_count, 'book')} since #{@books_by_year.keys.min}, the most recent of which was <em>#{@book.title}</em> by #{@book.author}. I track my reading with #{link_to 'Goodreads', 'http://www.goodreads.com/review/list/5896508?shelf=read'}.
+    p I've read #{pluralize(@books_count, 'book')} since #{@book_stats.keys.min}, the most recent of which was <em>#{@book.title}</em> by #{@book.author}. I track my reading with #{link_to 'Goodreads', 'http://www.goodreads.com/review/list/5896508?shelf=read'}.
 
 .row
   .col_6
@@ -18,7 +18,7 @@
 .row
   .col_12.last#header
     - cutoff = Time.now - 1.year
-    - @books_by_year.each do |year, books|
+    - @book_stats.each do |year, books|
       h2= year
       .books_year
         ul
