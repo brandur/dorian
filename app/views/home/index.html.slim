@@ -70,7 +70,7 @@
             = raw t.content_html
             = ' '
             span.meta= link_to distance_of_time_in_words(t.published_at.getlocal, Time.now, true), t.permalink
-      p= link_to "Every one of my #{pluralize(number_with_delimiter(Tweet.count), 'tweet')}", :twitter
+      p= link_to "Every one of my #{pluralize(number_with_delimiter(@tweet_count), 'tweet')}", :twitter
 
     .col_6.last#github
       h2= link_to 'GitHub', 'https://github.com/brandur'
