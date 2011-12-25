@@ -12,8 +12,8 @@ class HomeController < ApplicationController
     @fact_count_by_day     = Fact.order('created_at ASC')
       .where('created_at > ?', 30.days.ago)
       .count_by{|f| f.created_at.beginning_of_day}
-    @tweets                = Tweet.ordered.limit(10)
-    @tweet_count_by_month  = Tweet.order('published_at ASC')
+    @tweets                = Tweet.not_mention.ordered.limit(10)
+    @tweet_count_by_month  = Tweet.not_mention.order('published_at ASC')
       .count_by{|t| t.published_at.beginning_of_month}
   end
 end

@@ -7,7 +7,12 @@
       = render :partial => 'shared/go_home'
       h1 Twitter
 
-    p Every one of my tweets. Ever. That's right, all #{number_with_delimiter(@tweet_count)} of them.
+    p
+      | Every one of my tweets. Ever. That's right, all #{number_with_delimiter(@tweet_count)} of them. Also, 
+      - if params[:with_mentions]
+        = link_to 'see a list without mentions.', :twitter
+      - else
+        = link_to 'see a list including mentions.', 'twitter/with_mentions'
     = render :partial => 'charts/tweets_chart'
 
     - @tweets_by_year.each do |year, tweets|

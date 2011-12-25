@@ -1,6 +1,7 @@
 Dorian::Application.routes.draw do
   match 'books'   => 'books#index'
   match 'twitter' => 'tweets#index'
+  match 'twitter/with_mentions' => 'tweets#index', :defaults => { :with_mentions => true }
 
   root :to => 'home#index'
 
