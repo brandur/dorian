@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   caches_page :index
 
   def index
-    @actions               = GithubAction.ordered.limit(5)
+    @actions               = GithubAction.ordered.limit(3)
     @action_count_by_month = GithubAction.order('published_at ASC')
       .count_by{|a| a.published_at.beginning_of_month}
     @articles              = Article.ordered.limit(5)

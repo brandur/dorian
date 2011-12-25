@@ -15,8 +15,14 @@
         = link_to 'see a list including mentions.', 'twitter/with_mentions'
     = render :partial => 'charts/tweets_chart'
 
+.row
+  .col_1
+    ul.section_list
+      - @tweets_by_year.each do |year, tweets|
+        li= link_to year, "#year_#{year}"
+  .col_11.last
     - @tweets_by_year.each do |year, tweets|
-      h2= year
+      h2 id="year_#{year}"= year
       .twitter_year
         ul
           - tweets.sort!{|t1, t2| t2.published_at <=> t1.published_at}.each do |t|

@@ -4,6 +4,6 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//noinc= require jquery
 //noinc= require jquery_ujs
+//= require jquery-1.7.1
 //= require_tree .
