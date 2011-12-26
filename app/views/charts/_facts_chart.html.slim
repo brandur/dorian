@@ -1,54 +1,36 @@
 .chart#facts_chart
 - content_for(:javascript) do
   javascript:
-    var chart;
-    $(document).ready(function() {
-      chart = new Highcharts.Chart({
-        chart: {
-          renderTo: 'facts_chart',
+    var factCountByDayCategories = [ #{@fact_count_by_day.map{|k, v| "'#{k.strftime('%b %e')}'"}.join(', ')} ];
+    var factCountByDayData       = [ #{@fact_count_by_day.map{|k, v| v}.join(', ')} ];
+
+  coffee:
+    $ ->
+      chart = new Highcharts.Chart
+        chart:
+          renderTo: 'facts_chart'
           defaultSeriesType: 'column'
-        },
-        title: {
+        title:
           text: 'Facts Added in the Last 30 Days'
-        },
-        xAxis: {
-          categories: [ #{@fact_count_by_day.map{|k, v| "'#{k.strftime('%b %e')}'"}.join(', ')} ], 
-          labels: {
-            rotation: -45,
-            align: 'right',
+        xAxis:
+          categories: factCountByDayCategories
+          labels:
+            rotation: -45
+            align: 'right'
             step: 5
-          },
-          title: {
+          title:
             text: null
-          }
-        },
-        yAxis: {
-          min: 0,
-          title: {
+        yAxis:
+          min: 0
+          title:
             text: null
-          }
-        },
-        tooltip: {
-          formatter: function() {
-            return this.y + (this.y != 1 ? ' facts added' : ' fact added') + ' on ' + this.x;
-          }
-        },
-        plotOptions: {
-          bar: {
-            dataLabels: {
+        tooltip:
+          formatter: ->
+            this.y + (this.y != 1 ? ' facts added' : ' fact added') + ' on ' + this.x
+        plotOptions:
+          bar:
+            dataLabels:
               enabled: true
-            }
-          }
-        },
-        legend: {
-          enabled: false
-        },
-        credits: {
-          enabled: false
-        },
-        series: [{
-          name: 'Facts added',
-          data: [ #{@fact_count_by_day.map{|k, v| v}.join(', ')} ]
-        }]
-      });
-    });
+        series: [
+          { name: 'Facts added', data: factCountByDayData }
+        ]

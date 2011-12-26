@@ -1,49 +1,32 @@
 .chart#book_chart_by_num_pages
 - content_for(:javascript) do
   javascript:
-    var chart;
-    $(document).ready(function() {
-      chart = new Highcharts.Chart({
-        chart: {
-          renderTo: 'book_chart_by_num_pages',
+    var pageCountByYearCategories = [ #{@page_count_by_year.map{|k, v| k.strftime('%Y')}.map{ |d| "'#{d}'" }.join(', ')} ];
+    var pageCountByYearData       = [ #{@page_count_by_year.map{|k, v| v}.join(', ')} ];
+
+  coffee:
+    $ ->
+      chart = new Highcharts.Chart
+        chart:
+          renderTo: 'book_chart_by_num_pages'
           defaultSeriesType: 'bar'
-        },
-        title: {
+        title:
           text: 'Number of Pages Read by Year'
-        },
-        xAxis: {
-          categories: [ #{@page_count_by_year.map{|k, v| k.strftime('%Y')}.map{ |d| "'#{d}'" }.join(', ')} ],
-          title: {
+        xAxis:
+          categories: pageCountByYearCategories
+          title:
             text: null
-          }
-        },
-        yAxis: {
-          min: 0,
-          title: {
+        yAxis:
+          min: 0
+          title:
             text: null
-          }
-        },
-        tooltip: {
-          formatter: function() {
-            return this.y + (this.y != 1 ? ' pages read' : ' page read') + ' in ' + this.x;
-          }
-        },
-        plotOptions: {
-          bar: {
-            dataLabels: {
+        tooltip:
+          formatter: ->
+            this.y + (this.y != 1 ? ' pages read' : ' page read') + ' in ' + this.x
+        plotOptions:
+          bar:
+            dataLabels:
               enabled: true
-            }
-          }
-        },
-        legend: {
-          enabled: false
-        },
-        credits: {
-          enabled: false
-        },
-        series: [{
-          name: 'Pages read',
-          data: [ #{@page_count_by_year.map{|k, v| v}.join(', ')} ]
-        }]
-      });
-    });
+        series: [
+          { name: 'Pages read', data: pageCountByYearData }
+        ]

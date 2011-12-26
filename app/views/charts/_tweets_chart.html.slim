@@ -1,44 +1,31 @@
 .chart#tweet_chart
 - content_for(:javascript) do
   javascript:
-    var chart;
-    $(document).ready(function() {
-       chart = new Highcharts.Chart({
-          chart: {
-            renderTo: 'tweet_chart',
+    var tweetCountByMonthCategories = [ #{@tweet_count_by_month.map{|k, v| "'#{k.strftime("%b \\'%y")}'"}.join(', ')} ];
+    var tweetCountByMonthData       = [ #{@tweet_count_by_month.map{|k, v| v}.join(', ')} ];
+    var tweetCountByMonthStep       = #{defined?(is_compact) && is_compact ? 2 : 1};
+
+  coffee:
+    $ ->
+       chart = new Highcharts.Chart
+          chart:
+            renderTo: 'tweet_chart'
             defaultSeriesType: 'line'
-          },
-          title: {
-            text: 'Tweets by Month',
-          },
-          xAxis: {
-            categories: [ #{@tweet_count_by_month.map{|k, v| "'#{k.strftime("%b \\'%y")}'"}.join(', ')} ],
-            labels: {
-              rotation: -45,
-              align: 'right', 
-              step: #{defined?(is_compact) && is_compact ? 2 : 1}
-            },
-          },
-          yAxis: {
-            min: 0,
-            title: {
+          title:
+            text: 'Tweets by Month'
+          xAxis:
+            categories: tweetCountByMonthCategories
+            labels:
+              rotation: -45
+              align: 'right'
+              step: tweetCountByMonthStep
+          yAxis:
+            min: 0
+            title:
               text: null
-            }
-          },
-          tooltip: {
-            formatter: function() {
-              return this.y + (this.y != 1 ? ' tweets' : ' tweet') + ' in ' + this.x;
-            }
-          },
-          legend: {
-            enabled: false
-          },
-          credits: {
-            enabled: false
-          },
-          series: [{
-            name: 'Tweets',
-            data: [ #{@tweet_count_by_month.map{|k, v| v}.join(', ')} ]
-          }]
-       });
-    });
+          tooltip:
+            formatter: ->
+              this.y + (this.y != 1 ? ' tweets' : ' tweet') + ' in ' + this.x
+          series: [
+            { name: 'Tweets', data: tweetCountByMonthData }
+          ]

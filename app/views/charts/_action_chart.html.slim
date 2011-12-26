@@ -1,44 +1,31 @@
 .chart#action_chart
 - content_for(:javascript) do
   javascript:
-    var chart;
-    $(document).ready(function() {
-       chart = new Highcharts.Chart({
-          chart: {
-            renderTo: 'action_chart',
+    var actionCountByMonthCategories = [ #{@action_count_by_month.map{|k, v| "'#{k.strftime("%b \\'%y")}'"}.join(', ')} ];
+    var actionCountByMonthData       = [ #{@action_count_by_month.map{|k, v| v}.join(', ')} ];
+    var actionCountByMonthStep       = #{defined?(is_compact) && is_compact ? 2 : 1};
+
+  coffee:
+    $ ->
+       chart = new Highcharts.Chart
+          chart:
+            renderTo: 'action_chart'
             defaultSeriesType: 'line'
-          },
-          title: {
-            text: 'GitHub Actions by Month',
-          },
-          xAxis: {
-            categories: [ #{@action_count_by_month.map{|k, v| "'#{k.strftime("%b \\'%y")}'"}.join(', ')} ],
-            labels: {
-              rotation: -45,
-              align: 'right', 
-              step: #{defined?(is_compact) && is_compact ? 2 : 1}
-            },
-          },
-          yAxis: {
-            min: 0,
-            title: {
+          title:
+            text: 'GitHub Actions by Month'
+          xAxis:
+            categories: actionCountByMonthCategories
+            labels:
+              rotation: -45
+              align: 'right'
+              step: actionCountByMonthStep
+          yAxis:
+            min: 0
+            title:
               text: null
-            }
-          },
-          tooltip: {
-            formatter: function() {
-              return this.y + (this.y != 1 ? ' actions' : ' action') + ' in ' + this.x;
-            }
-          },
-          legend: {
-            enabled: false
-          },
-          credits: {
-            enabled: false
-          },
-          series: [{
-            name: 'Tweets',
-            data: [ #{@action_count_by_month.map{|k, v| v}.join(', ')} ]
-          }]
-       });
-    });
+          tooltip:
+            formatter: ->
+              this.y + (this.y != 1 ? ' actions' : ' action') + ' in ' + this.x;
+          series: [
+            { name: 'Tweets', data: actionCountByMonthData }
+          ]

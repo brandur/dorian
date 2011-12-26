@@ -1,49 +1,32 @@
 .chart#book_chart
 - content_for(:javascript) do
   javascript:
-    var chart;
-    $(document).ready(function() {
-      chart = new Highcharts.Chart({
-        chart: {
-          renderTo: 'book_chart',
+    var bookCountByYearCategories = [ #{@book_count_by_year.map{|k, v| k.strftime('%Y')}.map{ |d| "'#{d}'" }.join(', ')} ];
+    var bookCountByYearData       = [ #{@book_count_by_year.map{|k, v| v}.join(', ')} ];
+
+  coffee:
+    $ ->
+      chart = new Highcharts.Chart
+        chart:
+          renderTo: 'book_chart'
           defaultSeriesType: 'bar'
-        },
-        title: {
+        title:
           text: 'Number of Books Read by Year'
-        },
-        xAxis: {
-          categories: [ #{@book_count_by_year.map{|k, v| k.strftime('%Y')}.map{ |d| "'#{d}'" }.join(', ')} ],
-          title: {
+        xAxis:
+          categories: bookCountByYearCategories
+          title:
             text: null
-          }
-        },
-        yAxis: {
-          min: 0,
-          title: {
+        yAxis:
+          min: 0
+          title:
             text: null
-          }
-        },
-        tooltip: {
-          formatter: function() {
-            return this.y + (this.y != 1 ? ' books read' : ' book read') + ' in ' + this.x;
-          }
-        },
-        plotOptions: {
-          bar: {
-            dataLabels: {
+        tooltip:
+          formatter: ->
+            this.y + (this.y != 1 ? ' books read' : ' book read') + ' in ' + this.x
+        plotOptions:
+          bar:
+            dataLabels:
               enabled: true
-            }
-          }
-        },
-        legend: {
-          enabled: false
-        },
-        credits: {
-          enabled: false
-        },
-        series: [{
-          name: 'Books read',
-          data: [ #{@book_count_by_year.map{|k, v| v}.join(', ')} ]
-        }]
-      });
-    });
+        series: [
+          { name: 'Books read', data: bookCountByYearData }
+        ]
