@@ -5,7 +5,7 @@ config/config.yml
 content
 current_article
 current_article.yml
-db/*.sqlite3
+db/*.sqlite3*
 log/*.log
 public/images/articles
 public/stylesheets/application.css
