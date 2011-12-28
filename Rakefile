@@ -16,6 +16,10 @@ end
 desc 'Update data from source for all modules (e.g. Goodreads, Twitter, etc.)'
 task :update => :environment do
   App.module_instances do |mod|
-    mod.update
+    begin
+      mod.update
+    rescue
+      $stderr.puts "Update error: " + $!
+    end
   end
 end
