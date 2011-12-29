@@ -19,7 +19,7 @@ task :update => :environment do
     begin
       mod.update
     rescue
-      $stderr.puts "Update error: " + $!
+      $stderr.puts "Update error: " + $!.message
     end
   end
 end
