@@ -1,4 +1,5 @@
 .bundle
+.cache_rake
 .DS_Store
 .sass-cache
 config/config.yml
