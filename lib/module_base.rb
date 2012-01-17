@@ -7,6 +7,6 @@ class ModuleBase
 
   def expire_action(options)
     @@controller ||= ApplicationController.new
-    @@controller.expire_action(options)
+    @@controller.send(:expire_action, options)
   end
 end
