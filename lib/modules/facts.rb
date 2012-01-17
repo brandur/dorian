@@ -5,7 +5,7 @@ class Facts < ModuleBase
   include JsonHelper
 
   def expire
-    expire_page '/'
+    expire_action :controller => 'home', :action => 'index'
   end
 
   def update

@@ -5,8 +5,8 @@ class ModuleBase
     self.config = config
   end
 
-  def expire_page(uri)
+  def expire_action(options)
     @@controller ||= ApplicationController.new
-    @@controller.expire_page(uri)
+    @@controller.expire_action(options)
   end
 end

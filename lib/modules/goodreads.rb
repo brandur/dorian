@@ -5,8 +5,8 @@ class Goodreads < ModuleBase
   include XmlHelper
 
   def expire
-    expire_page '/'
-    expire_page '/books'
+    expire_action :controller => 'home',  :action => 'index'
+    expire_action :controller => 'books', :action => 'index'
   end
 
   def update

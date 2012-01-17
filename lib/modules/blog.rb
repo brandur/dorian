@@ -5,7 +5,7 @@ class Blog < ModuleBase
   include RssHelper
 
   def expire
-    expire_page '/'
+    expire_action :controller => 'home', :action => 'index'
   end
 
   def update

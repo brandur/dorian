@@ -31,6 +31,7 @@ group :development, :test do
 end
 
 group :production do
+  gem 'dalli'
   gem 'pg'
   gem 'thin'
 end

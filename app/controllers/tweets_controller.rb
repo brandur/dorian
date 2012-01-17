@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  caches_page :index
+  caches_action :index
 
   def index
     scope = Tweet

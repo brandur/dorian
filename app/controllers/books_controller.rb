@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  caches_page :index
+  caches_action :index
 
   def index
     @book = Book.ordered.first

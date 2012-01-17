@@ -5,8 +5,8 @@ class Twitter < ModuleBase
   include RssHelper
 
   def expire
-    expire_page '/'
-    expire_page '/twitter'
+    expire_action :controller => 'home',    :action => 'index'
+    expire_action :controller => 'twitter', :action => 'index'
   end
 
   def update

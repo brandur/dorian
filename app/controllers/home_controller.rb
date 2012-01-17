@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  caches_page :index
+  caches_action :index
 
   def index
     @actions               = GithubAction.ordered.limit(3)
