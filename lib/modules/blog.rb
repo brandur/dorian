@@ -4,10 +4,6 @@ require 'rss_helper'
 class Blog < ModuleBase
   include RssHelper
 
-  def expire
-    expire_action :controller => 'home', :action => 'index'
-  end
-
   def update
     num_updates = 0
     rss_for(config.atom) do |item|
@@ -17,7 +13,6 @@ class Blog < ModuleBase
       if tweet.valid?
         tweet.save
         num_updates += 1
-        expire
       end
     end
     puts "Fetched #{num_updates} new article(s)"

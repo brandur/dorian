@@ -4,10 +4,6 @@ require 'json_helper'
 class Facts < ModuleBase
   include JsonHelper
 
-  def expire
-    expire_action :controller => 'home', :action => 'index'
-  end
-
   def update
     num_updates = 0
     json_for("http://facts.brandur.org/users/#{config.user}.json?limit=100") do |json|
@@ -23,7 +19,6 @@ class Facts < ModuleBase
         if fact.valid?
           fact.save
           num_updates += 1
-          expire
         end
       end
     end

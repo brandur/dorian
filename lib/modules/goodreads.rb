@@ -4,11 +4,6 @@ require 'xml_helper'
 class Goodreads < ModuleBase
   include XmlHelper
 
-  def expire
-    expire_action :controller => 'home',  :action => 'index'
-    expire_action :controller => 'books', :action => 'index'
-  end
-
   def update
     num_updates = 0
     uri = "http://www.goodreads.com/review/list/#{config.user_id}.xml?v=2&per_page=200&shelf=read&sort=date_read&key=#{config.key}"
@@ -25,7 +20,6 @@ class Goodreads < ModuleBase
       if book.valid?
         book.save
         num_updates += 1
-        expire
       end
     end
     puts "Fetched #{num_updates} new book(s)"

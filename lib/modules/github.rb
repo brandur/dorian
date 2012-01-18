@@ -4,10 +4,6 @@ require 'rss_helper'
 class Github < ModuleBase
   include RssHelper
 
-  def expire
-    expire_action :controller => 'home', :action => 'index'
-  end
-
   def update
     num_updates = 0
     rss_for("https://github.com/#{config.user}.atom") do |item|
@@ -19,7 +15,6 @@ class Github < ModuleBase
       if action.valid?
         action.save
         num_updates += 1
-        expire
       end
     end
     puts "Fetched #{num_updates} new action(s)"

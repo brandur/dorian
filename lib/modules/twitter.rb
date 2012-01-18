@@ -4,11 +4,6 @@ require 'rss_helper'
 class Twitter < ModuleBase
   include RssHelper
 
-  def expire
-    expire_action :controller => 'home',    :action => 'index'
-    expire_action :controller => 'twitter', :action => 'index'
-  end
-
   def update
     num_updates = 0
     rss_for("http://twitter.com/statuses/user_timeline/#{config.user}.rss") do |item|
@@ -18,7 +13,6 @@ class Twitter < ModuleBase
       if tweet.valid?
         tweet.save
         num_updates += 1
-        expire
       end
     end
     puts "Fetched #{num_updates} new tweet(s)"
