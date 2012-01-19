@@ -9,10 +9,10 @@
 
     p
       | Every one of my tweets. Ever. That's right, all #{number_with_delimiter(@tweet_count)} of them. Also, 
-      - if params[:with_mentions]
+      - if params[:options] == 'with_mentions'
         = link_to 'see a list without mentions.', :twitter
       - else
-        = link_to 'see a list including mentions.', 'twitter/with_mentions'
+        = link_to 'see a list including mentions.', :controller => 'tweets', :options => 'with_mentions'
     = render :partial => 'charts/tweets_chart'
 
 .row
