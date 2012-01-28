@@ -18,22 +18,30 @@
 .row
   .col_1
     ul.section_list
-      - @tweets_by_year.each do |year, tweets|
-        li= link_to year, "#year_#{year}"
+      - @tweets_by_year.each do |year, tweets_by_month|
+        li
+          = link_to year, "#year_#{year}"
+          ul
+            - tweets_by_month.each do |month, tweet|
+              li= link_to month_name(month), "#month_#{year}_#{month}"
   .col_11.last
-    - @tweets_by_year.each do |year, tweets|
+    - @tweets_by_year.each do |year, tweets_by_month|
       h2 id="year_#{year}"= year
       .twitter_year
-        ul
-          - tweets.sort!{|t1, t2| t2.published_at <=> t1.published_at}.each do |t|
-            li
-              = raw t.content_html
-              = ' '
-              span.meta
-                - cutoff = Time.now - 1.year
-                - if t.published_at > cutoff
-                  a(href=t.permalink) #{distance_of_time_in_words(t.published_at.getlocal, Time.now, true)} ago
-                - else
-                  a(href=t.permalink)= t.published_at.getlocal.strftime('%b %e, %Y %H:%M')
+        - tweets_by_month.each do |month, tweets|
+          / No top margin for the first month in each year for a cleaner look
+          - extra = month == tweets_by_month.keys.first ? 'top' : ''
+          h3 id="month_#{year}_#{month}" class="#{extra}"= month_name(month)
+          ul
+            - tweets.sort!{|t1, t2| t2.published_at <=> t1.published_at}.each do |t|
+              li
+                = raw t.content_html
+                = ' '
+                span.meta
+                  - cutoff = Time.now - 1.year
+                  - if t.published_at > cutoff
+                    a(href=t.permalink) #{distance_of_time_in_words(t.published_at.getlocal, Time.now, true)} ago
+                  - else
+                    a(href=t.permalink)= t.published_at.getlocal.strftime('%b %e, %Y %H:%M')
 
     = render :partial => 'shared/footer'
