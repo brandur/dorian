@@ -8,7 +8,7 @@ module Enumerable
       if assoc.has_key?(key)
         assoc[key] += 1
       else
-        assoc[key] = 0
+        assoc[key] = 1
       end
     end
 
