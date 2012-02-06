@@ -22,7 +22,7 @@
             text: null
         tooltip:
           formatter: ->
-            this.y + (this.y != 1 ? ' books read' : ' book read') + ' in ' + this.x
+            this.y + (if this.y != 1 then ' books read' else ' book read') + ' in ' + this.x
         plotOptions:
           bar:
             dataLabels:

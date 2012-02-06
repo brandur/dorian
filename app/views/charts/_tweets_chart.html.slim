@@ -25,7 +25,7 @@
               text: null
           tooltip:
             formatter: ->
-              this.y + (this.y != 1 ? ' tweets' : ' tweet') + ' in ' + this.x
+              this.y + (if this.y != 1 then ' tweets' else ' tweet') + ' in ' + this.x
           series: [
             { name: 'Tweets', data: tweetCountByMonthData }
           ]

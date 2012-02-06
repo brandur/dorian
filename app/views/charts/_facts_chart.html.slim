@@ -26,7 +26,7 @@
             text: null
         tooltip:
           formatter: ->
-            this.y + (this.y != 1 ? ' facts added' : ' fact added') + ' on ' + this.x
+            this.y + (if this.y != 1 then ' facts added' else ' fact added') + ' on ' + this.x
         plotOptions:
           bar:
             dataLabels:
