@@ -35,6 +35,6 @@ class App < Configurable # :nodoc:
 
   for_module(:twitter) do |mod|
     # Your Twitter account
-    mod.user = 'fyrerise'
+    mod.user = 'brandur'
   end
 end
