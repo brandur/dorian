@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @actions               = GithubAction.ordered.limit(3)
     @action_count_by_month = GithubAction.order('published_at ASC')
       .count_by{|a| a.published_at.beginning_of_month}
-    @articles              = Article.ordered.limit(8)
+    @articles              = Article.ordered.limit(10)
     @book                  = Book.ordered.first
     @book_count_by_year    = Book.ordered.count_by{|b| b.finished_at.beginning_of_year}
     @fact                  = Fact.ordered.first
