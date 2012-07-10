@@ -34,7 +34,7 @@ task :update => :environment do
     App.module_instances do |mod|
       Slides.log :update, module: mod.class.name do
         begin
-          Timeout.timeout(10) do
+          Timeout.timeout(15) do
             mod.update
           end
         rescue
