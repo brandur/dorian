@@ -15,6 +15,6 @@ class Blog < ModuleBase
         num_updates += 1
       end
     end
-    puts "Fetched #{num_updates} new article(s)"
+    Slides.log :fetched, articles: num_updates
   end
 end

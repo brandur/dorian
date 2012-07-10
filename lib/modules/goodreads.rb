@@ -22,6 +22,6 @@ class Goodreads < ModuleBase
         num_updates += 1
       end
     end
-    puts "Fetched #{num_updates} new book(s)"
+    Slides.log :fetched, books: num_updates
   end
 end

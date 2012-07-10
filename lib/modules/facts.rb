@@ -22,6 +22,6 @@ class Facts < ModuleBase
         end
       end
     end
-    puts "Fetched #{num_updates} new fact(s)"
+    Slides.log :fetched, facts: num_updates
   end
 end

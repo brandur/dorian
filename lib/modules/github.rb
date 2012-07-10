@@ -17,6 +17,6 @@ class Github < ModuleBase
         num_updates += 1
       end
     end
-    puts "Fetched #{num_updates} new action(s)"
+    Slides.log :fetched, github_actions: num_updates
   end
 end

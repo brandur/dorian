@@ -15,6 +15,6 @@ class Twitter < ModuleBase
         num_updates += 1
       end
     end
-    puts "Fetched #{num_updates} new tweet(s)"
+    Slides.log :fetched, tweets: num_updates
   end
 end
