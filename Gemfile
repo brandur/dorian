@@ -10,6 +10,7 @@ gem 'coffee-script'
 gem 'jquery-rails'
 gem 'libxml-ruby'
 gem 'sass'
+gem 'slides'
 gem 'slim'
 gem 'uglifier'
 gem 'whenever', :require => false

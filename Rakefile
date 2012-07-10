@@ -8,19 +8,25 @@ Dorian::Application.load_tasks
 
 desc 'Expires everything so that pages show fresher timestamps'
 task :expire => :environment do
-  Rails.cache.clear
-  puts "Cleared cache"
+  Slides.log :cache_clear do
+    Rails.cache.clear
+  end
 end
 
 desc 'Update data from source for all modules (e.g. Goodreads, Twitter, etc.)'
 task :update => :environment do
-  App.module_instances do |mod|
-    begin
-      mod.update
-    rescue
-      $stderr.puts "Update error: " + $!.message
+  Slides.log :update do
+    App.module_instances do |mod|
+      Slides.log :update, module: mod.class.name do
+        begin
+          mod.update
+        rescue
+          $stderr.puts "update_error module=#{mod.class.name} message=#{$!.message}"
+        end
+      end
+    end
+    Slides.log :cache_clear do
+      Rails.cache.clear
     end
   end
-  Rails.cache.clear
-  puts "Cleared cache"
 end
