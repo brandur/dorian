@@ -21,6 +21,7 @@ class App < Configurable # :nodoc:
 
   for_module(:facts) do |mod|
     mod.http_api = 'https://facts-api.herokuapp.com'
+    mod.frontend = 'https://facts.brandur.org'
   end
 
   for_module(:github) do |mod|
