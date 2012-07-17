@@ -20,7 +20,7 @@ class App < Configurable # :nodoc:
   end
 
   for_module(:facts) do |mod|
-    mod.user = 'fyrerise'
+    mod.http_api = 'https://facts-api.herokuapp.com'
   end
 
   for_module(:github) do |mod|
