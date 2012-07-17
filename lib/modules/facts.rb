@@ -10,11 +10,11 @@ class Facts < ModuleBase
       json.each do |f|
         c = f['category']
         fact = Fact.new :facts_id => f['id'], 
-          :content       => f['content'], 
-          :created_at    => Time.parse(f['created_at']), 
-          :category_id   => c['id'], 
-          :category_name => c['name'], 
-          :category_slug => c['slug']
+          :content          => f['content'], 
+          :first_created_at => Time.parse(f['created_at']), 
+          :category_id      => c['id'], 
+          :category_name    => c['name'], 
+          :category_slug    => c['slug']
         if fact.valid?
           fact.save
           num_updates += 1
