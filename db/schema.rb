@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111225093655) do
+ActiveRecord::Schema.define(:version => 20120717062711) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20111225093655) do
   end
 
   create_table "book_authors", :force => true do |t|
-    t.integer  "book_id",    :limit => 255
+    t.integer  "book_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(:version => 20111225093655) do
     t.datetime "created_at"
     t.integer  "category_id"
     t.string   "category_name"
-    t.string   "category_permalink"
     t.datetime "updated_at"
+    t.string   "category_slug"
   end
 
   create_table "github_actions", :force => true do |t|

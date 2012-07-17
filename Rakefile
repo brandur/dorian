@@ -38,7 +38,7 @@ task :update => :environment do
             mod.update
           end
         rescue
-          $stderr.puts "error module=#{mod.class.name} message=#{$!.message}"
+          $stderr.puts "error module=#{mod.class.name} message=#{$!.message} backtrace=#{$!.backtrace}"
         end
       end
     end
