@@ -51,11 +51,11 @@
       = render :partial => 'charts/books_chart'
 
     .col_4.last#facts
-      h2= link_to 'Facts', 'https://facts-api.herokuapp.com'
+      h2= link_to 'Facts', 'http://facts.herokuapp.com/latest'
       p
         | I maintain a #{link_to 'facts database', 'https://facts-api.herokuapp.com'} to retain knowledge and try to make myself smarter. 
         - if defined?(@fact)
-          | Most recently, I added facts on #{link_to @fact.category_name, "https://facts.brandur.org/#{@fact.category_slug}"}. 
+          | Most recently, I added facts on #{link_to @fact.category_name, "http://facts.brandur.org/#{@fact.category_slug}"}. 
         | Get a slow stream of random facts by following #{link_to '@factsproject', 'http://twitter.com/factsproject'}.
       = render :partial => 'charts/facts_chart'
 
