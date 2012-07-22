@@ -16,7 +16,7 @@ class App < Configurable # :nodoc:
 
   for_module(:blog) do |mod|
     # Your blog's Atom feed
-    mod.atom = 'http://mutelight.org/articles.atom'
+    mod.atom = 'https://mutelight.org/articles.atom'
   end
 
   for_module(:facts) do |mod|
