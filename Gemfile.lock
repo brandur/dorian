@@ -140,6 +140,7 @@ DEPENDENCIES
   jquery-rails
   libxml-ruby
   pg
+  rack-ssl
   rails (~> 3.1)
   rspec-rails
   sass

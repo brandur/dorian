@@ -9,6 +9,7 @@ gem 'app'
 gem 'coffee-script'
 gem 'jquery-rails'
 gem 'libxml-ruby'
+gem "rack-ssl"
 gem 'sass'
 gem 'slides'
 gem 'slim'
