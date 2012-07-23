@@ -12,7 +12,7 @@ html
     = javascript_include_tag 'application', :debug => Rails.env.development?
     = csrf_meta_tags
     meta http-equiv='content-type' content='text/html; charset=UTF-8'
-    = yield(:fonts)
+    link href='//fonts.googleapis.com/css?family=Raleway:100|&amp;subset=latin' rel='stylesheet' type='text/css' 
     = yield(:javascript)
     = yield(:head)
   body
