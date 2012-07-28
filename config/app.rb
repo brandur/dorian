@@ -19,6 +19,11 @@ class App < Configurable # :nodoc:
     mod.atom = 'https://mutelight.org/articles.atom'
   end
 
+  for_module(:blog) do |mod|
+    # Your blog's Atom feed
+    mod.atom = 'https://the-surf.org/articles.atom'
+  end
+
   for_module(:facts) do |mod|
     mod.http_api = 'https://facts-api.herokuapp.com'
     mod.frontend = 'https://facts.brandur.org'
