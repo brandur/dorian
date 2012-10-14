@@ -1,18 +1,20 @@
 require 'module_base'
-require 'rss_helper'
+require 'json_helper'
 
 class Twitter < ModuleBase
-  include RssHelper
+  include JsonHelper
 
   def update
     num_updates = 0
-    rss_for("http://twitter.com/statuses/user_timeline/#{config.user}.rss") do |item|
-      tweet = Tweet.new :content => item.title.gsub(/^[^:]+: /, ''), 
-        :permalink => item.link, 
-        :published_at => Time.parse(item.date.to_s)
-      if tweet.valid?
-        tweet.save
-        num_updates += 1
+    json_for("https://api.twitter.com/1/statuses/user_timeline.json?screen_name=#{config.user}") do |json|
+      json.each do |item|
+        tweet = Tweet.new :content => item["text"].gsub(/^[^:]+: /, ''), 
+          :permalink => "http://twitter.com/#{config.user}/statuses/#{item["id"]}",
+          :published_at => Time.parse(item["created_at"])
+        if tweet.valid?
+          tweet.save
+          num_updates += 1
+        end
       end
     end
     Slides.log :fetched, tweets: num_updates
