@@ -36,9 +36,9 @@ Installation
 
 ### Production
 
-Production is set to use Dalli. Install Memcache via a package manager, or on Heroku:
+Production is set to use Dalli. Install Memcach via a package manager, or on Heroku:
 
-    heroku addons:add memcache
+    heroku addons:add memcachier
 
 ### Cron
 
